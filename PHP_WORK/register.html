@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang = "en" dir="ltr">
+    <head>
+        <meta charset = "utf-8">
+        <title>EDE System</title>
+        <meta name ="viewport" content="width=device-width, inital-scale=1.0">
+        <link rel ="stylesheet" href= "./css/register.css">
+        
+        <script src ="https://code.jquery.com/jquery-3.4.1.js"></script>
+        
+        <script>
+          $(document).ready(function(){
+            $('#menubar').click(function(){
+              $('ul' ).toggleClass('show')
+            });
+          });
+        </script>
+        
+        
+    </head>
+    <body>
+        <nav>
+            <label class = "logo">EDE Express</label>
+        <ul>
+          
+            <li><a href ="index.html">Home</a></li>
+            <li><a href ="contact.html">Contact</a></li>
+            <li><a href ="About.html">About</a></li>
+            <li><a href ="login.html">Login</a></li>
+        </ul>>
+        <label id="menubar">
+          <img src = "ICON.png">
+        </label>
+    </nav>
+    
+        
+        <div class="container">
+          
+        </div>
+        
+          <form  onsubmit="reg()" name="register">
+            <div id="message">
+              <h3>Password must contain the following list:</h3>
+              <p id="many" class="invalid">A <b>both</b> password and re-type password</p>
+              <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+              <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+              <p id="number" class="invalid">A <b>number</b></p>
+              <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+          </div>
+            
+            <div class="container">
+              
+              <h1>Customer Sign Up</h1>
+              
+              <br>
+              
+              <p>Please fills all the information to create an account.</p>
+              <label for="cs_name"><b>Customer Name</b></label>
+              <input type="text" placeholder="Enter Username" name="cs_name" required>
+      
+              <label for="cs_name"><b>Email</b></label>
+              <input type="email" placeholder="Enter Email" name="email" required>
+      
+              <label for="cs_name"><b>Address</b></label>
+              <input type="text" placeholder="Enter Address" name="address" required>
+      
+              <label for="cs_name"><b>Phone Number</b></label>
+              <input type="tel" placeholder="Enter Phone Number" name="phone" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+      
+              <label for="psw-repeat"><b>Re-type Password</b></label>
+              <input type="password" placeholder="Repeat Password" name="pswretype" id="pswretype" required>
+          
+              <label>
+                
+              </label>
+              
+          
+              <p>By creating an account you agree to our <a href="#" style="color:rgb(84, 22, 255)">Terms & Privacy</a>.</p>
+              <a href="login.html">Back to login?</a>
+              
+                <button type="submit" class="signupbtn" onsubmit="reg()">Sign Up</button>
+                <script>
+                  function reg(){
+            
+                    
+                    alert("Register Successfull... Please wait for admin create your account");
+                    window.location.href="index.html";
+                    window.event.returnValue=false;
+        
+                  }
+                </script>
+              </div>
+            </div>
+          </form>
+          
+<script>
+      var many = document.getElementById("many");
+      var my2Input = document.getElementById("pswretype");
+      var myInput = document.getElementById("psw");
+      var letter = document.getElementById("letter");
+      var capital = document.getElementById("capital");
+      var number = document.getElementById("number");
+      var length = document.getElementById("length");
+
+ 
+
+  
+
+  myInput.onfocus = function() {
+    document.getElementById("message").style.display = "block";
+  }
+  myInput.onblur = function() {
+    document.getElementById("message").style.display = "none";
+    
+  }
+  my2Input.onfocus = function() {
+    document.getElementById("message").style.display = "block";
+  }
+  my2Input.onblur = function() {
+    document.getElementById("message").style.display = "none";
+    
+  }
+  
+  my2Input.onkeyup = function() {
+    var lowerCaseLetters = /[a-z]/g;
+    if(myInput.value.match(lowerCaseLetters)) {  
+      letter.classList.remove("invalid");
+      letter.classList.add("valid");
+    } else {
+      letter.classList.remove("valid");
+      letter.classList.add("invalid");
+    }
+    
+    var upperCaseLetters = /[A-Z]/g;
+    if(myInput.value.match(upperCaseLetters)) {  
+      capital.classList.remove("invalid");
+      capital.classList.add("valid");
+    } else {
+      capital.classList.remove("valid");
+      capital.classList.add("invalid");
+    }
+    var numbers = /[0-9]/g;
+    if(myInput.value.match(numbers)) {  
+      number.classList.remove("invalid");
+      number.classList.add("valid");
+    } else {
+      number.classList.remove("valid");
+      number.classList.add("invalid");
+    }
+    
+    if(myInput.value.length >= 8) {
+      length.classList.remove("invalid");
+      length.classList.add("valid");
+    } else {
+      length.classList.remove("valid");
+      length.classList.add("invalid");
+    }
+
+    if(myInput.value == my2Input.value) {
+      many.classList.remove("invalid");
+      many.classList.add("valid");
+    } else {
+      many.classList.remove("valid");
+      many.classList.add("invalid");
+    }
+   
+  }
+  
+  </script>
+    </body>
+</html>

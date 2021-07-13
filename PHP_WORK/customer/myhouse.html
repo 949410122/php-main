@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang = "en" dir="ltr">
+    <head>
+        <meta charset = "utf-8">
+        <title>EDE System</title>
+        <meta name ="viewport" content="width=device-width, inital-scale=1.0">
+        <link rel ="stylesheet" href= "./css/myhouse.css">
+        <link rel="stylesheet" href="./css/profile.css">
+        <link rel="stylesheet" href="./css/filter.css">
+        
+        <script src ="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script>
+          $(document).ready(function(){
+            $('#menubar').click(function(){
+              $('ul' ).toggleClass('show')
+            });
+          });
+        </script>
+        <script>
+  
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {
+      element.className += " " + arr2[i];
+    }
+  }
+}
+
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+
+        </script>
+        <script>
+          function searchFunction() {
+            
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById('myInput');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myfilter");
+            li = ul.getElementsByTagName('li');
+          
+           
+            for (i = 0; i < li.length; i++) {
+              a = li[i].getElementsByTagName("a")[0];
+              txtValue = a.textContent || a.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+              } else {
+                li[i].style.display = "none";
+              }
+            }
+          }
+          </script>
+          <script>
+            
+
+          </script>
+      
+
+    </head>
+    <body>
+        <nav>
+            <label class = "logo">EDE Express</label>
+        <ul>
+          <li><a href ="./home.html">Home</a></li>
+          <li><a href ="./contact.html">Contact</a></li>
+          <li><a href ="./About.html">About</a></li>
+          <li><a href ="./myhouse.html">My Profile</a></li>
+          <li><a href ="/index.html">Logout</a></li>
+
+
+        </ul>>
+
+        
+        <label id="menubar">
+          <img src = "ICON.png">
+        </label>
+    </nav>
+    <br></br>
+
+    <body2>
+   
+      <div class="container">
+          <div class="profile-header">
+              <div class="profile-img">
+                  <img src="./bg.jpg" width="200" alt="">
+              </div>
+              <div class="profile-nav-info">
+                  <h3 class="user-name">Lemon</h3>
+                  <div class="address">
+                      <p class="state">Hong Kong, </p>
+                      <span class="country">Yueng Long</span>
+                  </div>
+              </div>
+              <div class="profile-option">
+                <div class="profile-btn">
+                  <button class="chatbtn" onclick="deleteme()">
+                      <i class="fa fa-comment"></i> Delete Account
+                  </button>
+                  <button class="createbtn" onclick="modfiy()">
+                      <i class="fa fa-plus"></i>Edit Profile
+                  </button>
+              </div>
+              </div>
+              </div>
+          </div>
+          <div class="main-bd">
+              <div class="left-side">
+                  <div class="profile-side">
+                      <p class="mobile-no"><i class="fa fa-phone"></i>+852 **** 09*6</p>
+                      <p class="user-mail"><i class="fa fa-envelope"></i>lemonchan@gmail.com</p>
+                      <div class="user-bio">
+                         <h3>About Customer</h3>
+                          <p class="bio">Only free at 3pm to 10pm</p>
+                      </div>
+                      
+                      
+                      
+                  </div>
+              </div>
+              <div class="right-side">
+                  <div class="nav">
+                      <ul>
+                          <li onclick="tabs(0)" class="user-post active">Track delivery status</li>
+                          <li onclick="tabs(1)" class="user-review">Create the delivery</li>
+                          <li onclick="tabs(2)" class="user-setting">Settings</li>
+                      </ul>
+                  </div>
+                  <div class="profile-body">
+                      <div class="profile-posts tab">
+                          <h1>Manage Your Own Order</h1>
+                          Filter:<input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search keyword">
+                          <br></br>
+                          <div id="myBtnContainer">
+                            <button class="btn active" onclick="filterSelection('all')"> All order</button>
+                            <button class="btn" onclick="filterSelection('Waiting for Confirmation')"> Waiting for Confirmation</button>
+                            <button class="btn" onclick="filterSelection('Confirmed')"> Confirmed</button>
+                            <button class="btn" onclick="filterSelection('In Transit')"> In Transit</button>
+                            <button class="btn" onclick="filterSelection('Delivering')"> Delivering</button>
+                            <button class="btn" onclick="filterSelection('Completed')"> Completed</button>
+                          </div>
+
+                          
+                          <ul id="myfilter">
+                          <div class="container">
+                            <div class="filterDiv Waiting for Confirmation">
+                              ********************************************************************************************************************************************************************************************************************************************
+                            <li><a><h4>AirwayBills Number : 1</h4>
+                              <p>customer Email: RechieLau@gmail.com</p>
+                              <p>Staff ID: Mary112</p>
+                              <p>LocationID Email: 1</p>
+                              <p>Date: 2021-03-24 16:12:13</p>
+                              <p>Receiver Name: Peter</p>
+                              <p>Receiver PhoneNo.: 23456454</p>
+                              <p>Receiver Address: Flat 8, Chates Farm Court, John Street, Brighton</p>
+                              <p>Weight: 25.5</p>
+                              <p>Weight: 1880.0</p></a>
+                              <p>Status: Waiting for Confirmation</p>
+                              <a href ="modifyorder.html">Modify Order</a><br>
+                              ********************************************************************************************************************************************************************************************************************************************
+                          </div></div></li>
+
+                          <div class="container">
+                            <div class="filterDiv Confirmed">
+                              ********************************************************************************************************************************************************************************************************************************************
+                            <li><a><h4>AirwayBills Number : 2</h4>
+                              <p>customer Email: RechieLau@gmail.com</p>
+                              <p>Staff ID: Hattu123</p>
+                              <p>LocationID Email: 2</p>
+                              <p>Date: 2021-03-24 14:12:13</p>
+                              <p>Receiver Name: Peter</p>
+                              <p>Receiver PhoneNo.: 64456454</p>
+                              <p>Receiver Address: Flat 4, Basemaent, John Street, Brighton</p>
+                              <p>Weight: 23.5</p>
+                              <p>Weight: 150.0</p></a>
+                              <p>Status: Confirmed</p>
+                              <a href ="modifyorder.html">Modify Order</a><br>
+                              ********************************************************************************************************************************************************************************************************************************************
+                          </div></div></li>
+
+                          <div class="container">
+                            <div class="filterDiv In Transit">
+                              ********************************************************************************************************************************************************************************************************************************************
+                            <li><a><h4>AirwayBills Number : 3</h4>
+                              <p>customer Email: RechieLau@gmail.com</p>
+                              <p>Staff ID: Mary112</p>
+                              <p>LocationID Email: 1</p>
+                              <p>Date: 2021-02-24 14:12:13</p>
+                              <p>Receiver Name: Herry</p>
+                              <p>Receiver PhoneNo.: 23456454</p>
+                              <p>Receiver Address: Flat 8, VTC Happygouse, John Street, Brighton</p>
+                              <p>Weight: 17.5</p>
+                              <p>Total Price: 120.0</p></a>
+                              <p>Status: In Transit</p>
+                              <a href ="modifyorder.html">Modify Order</a><br>
+                              ********************************************************************************************************************************************************************************************************************************************
+                          </div></div></li>
+
+                          <div class="container">
+                            <div class="filterDiv Delivering">
+                              ********************************************************************************************************************************************************************************************************************************************
+                            <li><a><h4>AirwayBills Number : 4</h4>
+                              <p>customer Email: RechieLau@gmail.com</p>
+                              <p>Staff ID: BabyWong</p>
+                              <p>LocationID Email: 1</p>
+                              <p>Date: 2021-01-17 14:12:13</p>
+                              <p>Receiver Name: Sistter</p>
+                              <p>Receiver PhoneNo.: 2664 3149</p>
+                              <p>Receiver Address: Flat 2, Glory of Lemon Street, Tauoi</p>
+                              <p>Weight: 52.5</p>
+                              <p>Total Price: 12000.0</p></a>
+                              <p>Status: Delivering</p>
+                              <a href ="modifyorder.html">Modify Order</a><br>
+                              ********************************************************************************************************************************************************************************************************************************************
+                          </div></div></li>
+
+                          <div class="container">
+                            <div class="filterDiv Delivering">
+                              ********************************************************************************************************************************************************************************************************************************************
+                            <li><a><h4>AirwayBills Number : 5</h4>
+                              <p>customer Email: RechieLau@gmail.com</p>
+                              <p>Staff ID: Mary112</p>
+                              <p>LocationID Email: 1</p>
+                              <p>Date: 2021-03-24 16:12:13</p>
+                              <p>Receiver Name: Peter</p>
+                              <p>Receiver PhoneNo.: 23456454</p>
+                              <p>Receiver Address: Flat 8, Chates Farm Court, John Street, Brighton</p>
+                              <p>Weight: 25.5</p>
+                              <p>Total Price: 1880.0</p></a>
+                              <p>Status: Waiting for Confirmation</p>
+                              <a href ="modifyorder.html">Modify Order</a><br>
+                              ********************************************************************************************************************************************************************************************************************************************
+                          </div></div></li>
+
+                          <div class="container">
+                            <div class="filterDiv Completed">
+                              ********************************************************************************************************************************************************************************************************************************************
+                            <li><a><h4>AirwayBills Number : 6</h4>
+                              <p>customer Email: RechieLau@gmail.com</p>
+                              <p>Staff ID: Mary112</p>
+                              <p>LocationID Email: 1</p>
+                              <p>Date: 2021-06-05 08:19:21</p>
+                              <p>Receiver Name: Lau Piu Yin</p>
+                              <p>Receiver PhoneNo.: 3774 2184</p>
+                              <p>Receiver Address: Flat 8, Never Stop EDE House, SAD Street, SOSAD</p>
+                              <p>Weight: 45.5</p>
+                              <p>Total Price: 1480.0</p></a>
+                              <p>Status: Completed</p>
+                              <a href ="modifyorder.html">Modify Order</a><br>
+                              ********************************************************************************************************************************************************************************************************************************************
+                          </div></div></li>
+
+                      </div>
+                      <div class="profile-reviews tab">
+                         <h1>Create new order</h1>
+                         <p>Before create the order please read our policy first , for any problem you also can call our customer seriver centre . EDE comapny really like to look at your question or comment .
+                         </p> Thank you for using EDE System
+                         <form onsubmit="createbills()">
+                          <div class="imgcontainer">
+                          </div>
+                          <div class="LoginSystem">
+                            <label for="uname"><b>Air Waybill’s Number</b></label>
+                            <input type="text" placeholder="Air Waybill’s Number" class = "form-control txtuser" id ="usernametxt" required disabled value="7 ">
+                        
+                            <label for="psw"><b>Record’s Datetime</b></label>
+                            <input type="text" placeholder="Enter Date Time" class = "form-control txtpass" id="datetxt" required>
+
+                            <label for="psw"><b>Sender’s Name</b></label>
+                            <input type="text" placeholder="Enter Sender name" class = "form-control txtpass" id="senderdtxt" required>
+
+                            <label for="psw"><b>Receiver’s Name</b></label>
+                            <input type="text" placeholder="Enter Receiver’s Name" class = "form-control txtpass" id="receivedtxt" required>
+
+                            <label for="psw"><b>Receiver’s Phone Number</b></label>
+                            <input type="tel" placeholder="Enter Phone Number" class = "form-control txtpass" id="phonetxt" required>
+
+                            <label for="psw" ><b>Parcel’s Weight</b></label><br>
+                            <input type="number" min = "0" placeholder="Enter Weight" class = "form-control txtpass" id="weightget" onkeyup="calpriice()" required><br>
+
+                            <label for="psw"><b>Current Location</b></label>
+                            <input type="number" min ="1" max="2" placeholder="Enter Location" class = "form-control txtpass" id="location" required>
+                            <button class = "button1" type="submit" onsubmit="createbills()" >Create Airwaybills</button>
+                            Total Price is :
+                            <input type ="text" id="totalmoney" value="0" disabled>
+
+                            </label>
+                          </div>
+                          <div class="container" style="background-color:#f1f1f1">          
+                          </div>
+                        </form>
+                      </div>
+                      <div class="profile-settings tab">
+                         <h1>Web Setting</h1>
+                          <p>You can seeting all web fuction here , some function will coming soon . if you like this function you can give me 5 star , if you don't like this function you also can call our hotline to let us improve , Thank you</p>
+                          <input type="text" id = "mycolor" placeholder = "type color here "value="">
+                          <button class = "button1" onclick="ChengeBgColor()">Change Background Color</button>
+
+                          <script type="text/javascript">
+                          function ChengeBgColor(){
+                            let color = document.getElementById("mycolor");
+　                                      document.bgColor= color.value;
+                          }
+                          function calpriice(){
+                            var total = 0;
+                            var price1kg = 292.5; 
+                            var getweight = document.getElementById("weightget").value;
+                            var newweight = 0;
+                            if (/^[\d\.]{3,}$/.test(getweight)) { 
+                            
+                                      newweight = Math.round(getweight);
+                                      if(newweight > getweight){
+
+                                      }else  {
+                                        newweight = newweight + 1;
+
+                                      }
+                                      total = newweight * price1kg;
+
+                                      var content = document.getElementById("text");
+                            document.getElementById("totalmoney").value= "$" + total;       
+                                      
+                            } else { 
+                              total = getweight * price1kg;
+                              var content = document.getElementById("text");
+                            document.getElementById("totalmoney").value= "$" + total;
+                            
+                            } 
+                          }
+                        </script>
+                      </div>
+                    </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+       
+       
+       
+       
+       <script src="./jquery/jquery.js"></script>
+       <script src="./main.js"></script>
+       <script src="./lemon.js"></script>
+       <script>filterSelection("all")</script>
+   </body2>
+</html>
