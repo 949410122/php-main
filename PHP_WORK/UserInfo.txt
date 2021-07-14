@@ -1,7 +1,0 @@
-Customer:
-username:lemon
-password:123
-
-Staff:
-username:mary
-password:123
